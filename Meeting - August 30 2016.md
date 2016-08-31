@@ -18,9 +18,9 @@ https://docs.google.com/spreadsheets/d/1qPLkbONGE4kDj01h0HM6UgcVNlBrMBbCdfRGTayh
 Two initial sketches were created: 
 
 ##Multi-paradigm left to right
-(Link for details)
-##Integrated behavior tree top to bottom;
-(Link for details)
+(Include image or link?)
+##Integrated behavior tree top to bottom
+(Include image or link?)
 
 #What are the next steps
 What are we going to do in our next meeting?
