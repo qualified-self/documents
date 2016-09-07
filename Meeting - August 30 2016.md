@@ -22,8 +22,8 @@ Two initial sketches were created:
 ![Sketch2](jeronimo-sketch2.jpeg)
 
 ##Integrated behavior tree top to bottom
-![Sketch1](sofian-sketch1.jpeg)
-![Sketch2](sofian-sketch2.jpeg)
+![Sketch1](sofian-sketch1.jpg)
+![Sketch2](sofian-sketch2.jpg)
 
 #What are the next steps
 What are we going to do in our next meeting?
