@@ -15,11 +15,15 @@
 https://docs.google.com/spreadsheets/d/1qPLkbONGE4kDj01h0HM6UgcVNlBrMBbCdfRGTayh5aI/edit#gid=0
 
 #Sketching prototypes
-Two initial sketches were created (https://drive.google.com/open?id=0B12EBp1SbFEVaFBSSi1JSjlSazg).
-* Multi-paradigm left to right (sketch 1-2)
-* Integrated behavior tree top to bottom (sketch 3)
+Two initial sketches were created: 
 
+##Multi-paradigm left to right
+![Sketch1](jeronimo-sketch1)
+![Sketch2](jeronimo-sketch2)
 
+##Integrated behavior tree top to bottom
+![Sketch1](sofian-sketch1)
+![Sketch2](sofian-sketch2)
 
 #What are the next steps
 What are we going to do in our next meeting?
