@@ -18,12 +18,12 @@ https://docs.google.com/spreadsheets/d/1qPLkbONGE4kDj01h0HM6UgcVNlBrMBbCdfRGTayh
 Two initial sketches were created: 
 
 ##Multi-paradigm left to right
-![Sketch1](jeronimo-sketch1)
-![Sketch2](jeronimo-sketch2)
+![Sketch1](jeronimo-sketch1.jpeg)
+![Sketch2](jeronimo-sketch2.jpeg)
 
 ##Integrated behavior tree top to bottom
-![Sketch1](sofian-sketch1)
-![Sketch2](sofian-sketch2)
+![Sketch1](sofian-sketch1.jpeg)
+![Sketch2](sofian-sketch2.jpeg)
 
 #What are the next steps
 What are we going to do in our next meeting?
