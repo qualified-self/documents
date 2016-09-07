@@ -18,8 +18,8 @@ https://docs.google.com/spreadsheets/d/1qPLkbONGE4kDj01h0HM6UgcVNlBrMBbCdfRGTayh
 Two initial sketches were created: 
 
 ##Multi-paradigm left to right
-![Sketch1](jeronimo-sketch1.jpeg)
-![Sketch2](jeronimo-sketch2.jpeg)
+![Sketch1](jeronimo-sketch1.jpg)
+![Sketch2](jeronimo-sketch2.jpg)
 
 ##Integrated behavior tree top to bottom
 ![Sketch1](sofian-sketch1.jpg)
