@@ -18,12 +18,12 @@ https://docs.google.com/spreadsheets/d/1qPLkbONGE4kDj01h0HM6UgcVNlBrMBbCdfRGTayh
 Two initial sketches were created: 
 
 ##Multi-paradigm left to right
-![Sketch1](jeronimo-sketch1.jpg)
-![Sketch2](jeronimo-sketch2.jpg)
+![Sketch1](assets/jeronimo-sketch1.jpg)
+![Sketch2](assets/jeronimo-sketch2.jpg)
 
 ##Integrated behavior tree top to bottom
-![Sketch1](sofian-sketch1.jpg)
-![Sketch2](sofian-sketch2.jpg)
+![Sketch1](assets/sofian-sketch1.jpg)
+![Sketch2](assets/sofian-sketch2.jpg)
 
 #What are the next steps
 What are we going to do in our next meeting?
@@ -38,7 +38,4 @@ Use the design guidelines for the evaluation. Interaction should be video record
 - Wizard of Oz?
 - Informal interview?
 
-Someone at IDMIL (is this the most adequate user for this tool) is going to be our user.
-
-
-
+Someone at IDMIL (is this the most adequate user for this tool) could be our user.
