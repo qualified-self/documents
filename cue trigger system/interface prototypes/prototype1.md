@@ -6,7 +6,7 @@ The system is generally composed of a blackboard and a control model (canvas).
 - Both models uses a blackboard to handle variables. Users can use these variables inside the Behavior Tree nodes or to trigger state changes;
 - Could accept OSC messages from other clients (i.e. in case we want to use sensor data input);
 
-![image2](../assets/prototype1-2.jpeg)
+![image2](../assets/prototype1-2.jpg)
 
 #Control model
 Defines the rules of how the system is going to behave. Can be separated into two categories: an easy & limited (represented by Finite-State Machines, the FSM) and a complex & powerful (represented by Behavior Trees, the BT).
@@ -14,9 +14,9 @@ Defines the rules of how the system is going to behave. Can be separated into tw
 ##Easy & limited model: Finite-State Machine
 Simple & straightforward, but limited in power and organization.
 
-![image2](../assets/prototype1-3.jpeg)
+![image2](../assets/prototype1-3.jpg)
 
-![image2](../assets/prototype1-4.jpeg)
+![image2](../assets/prototype1-4.jpg)
 
 ###What actions can be associated to the states?
 In priority order for the implementation:
