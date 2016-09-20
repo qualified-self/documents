@@ -1,3 +1,4 @@
+#Interface Prototype 1
 The system is generally composed of a blackboard and a control model (canvas).
 
 ![image1](../assets/prototype1-1.jpg)
@@ -9,12 +10,16 @@ The system is generally composed of a blackboard and a control model (canvas).
 ![image2](../assets/prototype1-2.jpg)
 
 #Control model
-Defines the rules of how the system is going to behave. Can be separated into two categories: an easy & limited (represented by Finite-State Machines, the FSM) and a complex & powerful (represented by Behavior Trees, the BT).
+Defines the rules of how the system is going to behave. Can be separated into two categories: an easy & limited (represented by Finite-State Machines, the FSM) and a complex & powerful (represented by Behavior Trees, the BT). See reference for details regarding where these categories come from.
 
 ##Easy & limited model: Finite-State Machine
 Simple & straightforward, but limited in power and organization.
 
+###How to add states?
+
 ![image2](../assets/prototype1-3.jpg)
+
+###How to create connections between states?
 
 ![image2](../assets/prototype1-4.jpg)
 
