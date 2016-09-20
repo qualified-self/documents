@@ -97,4 +97,5 @@ http://www.gamasutra.com/blogs/JakobRasmussen/20160427/271188/Are_Behavior_Trees
 	"Behavior Trees in many cases provide a framework for designing more comprehensible and easier-to-read AIs than hierarchical FSMs. Also, the nicely organised tree makes for easier visual debugging in practice. However, the Behavior Tree technique has a number of shortcomings. (...) For very large behavior trees, the costs of evaluating the whole tree can be prohibitive.  The major challenge is that it does not provide a model for improving decision-making. The decision-making is locked to the conditional nodes, without specifying how decisions are made to invoke different subtrees". 
 
 <sup>1</sup> https://github.com/libgdx/gdx-ai/wiki/Behavior-Trees
+
 <sup>2</sup> http://www.gamasutra.com/view/feature/130663/gdc_2005_proceeding_handling_.php
