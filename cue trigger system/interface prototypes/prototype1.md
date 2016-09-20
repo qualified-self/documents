@@ -1,6 +1,6 @@
 The system is generally composed of a blackboard and a control model (canvas).
 
-![image1](../assets/prototype1-1.jpeg)
+![image1](../assets/prototype1-1.jpg)
 
 #Blackboard
 - Both models uses a blackboard to handle variables. Users can use these variables inside the Behavior Tree nodes or to trigger state changes;
