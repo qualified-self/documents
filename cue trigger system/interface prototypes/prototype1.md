@@ -1,27 +1,32 @@
 #Interface Prototype 1
-The system is generally composed of a blackboard and a control model (canvas).
+The system is generally composed of a blackboard and a control model.
 
-![image1](../assets/prototype1-1.jpg)
+![image](../assets/prototype1-0.jpg)
 
 #Blackboard
 - Both models uses a blackboard to handle variables. Users can use these variables inside the Behavior Tree nodes or to trigger state changes;
 - Could accept OSC messages from other clients (i.e. in case we want to use sensor data input);
 
-![image2](../assets/prototype1-2.jpg)
+![image](../assets/prototype1-2.jpg)
 
 #Control model
 Defines the rules of how the system is going to behave. Can be separated into two categories: an easy & limited (represented by Finite-State Machines, the FSM) and a complex & powerful (represented by Behavior Trees, the BT). See reference for details regarding where these categories come from.
 
+Control models can be run and stopped by using the big buttons (see images below).
+
 ##Easy & limited model: Finite-State Machine
 Simple & straightforward, but limited in power and organization.
 
+###How does it look like?
+![image](../assets/prototype1-1.jpg)
+
 ###How to add states?
 
-![image2](../assets/prototype1-3.jpg)
+![image](../assets/prototype1-3.jpg)
 
 ###How to create connections between states?
 
-![image2](../assets/prototype1-4.jpg)
+![image](../assets/prototype1-4.jpg)
 
 ###What actions can be associated to the states?
 In priority order for the implementation:
@@ -36,30 +41,34 @@ In priority order for the implementation:
 ##Complex & powerful: Behavior Tree
 Powerful but more complex to use.
 
-###What are our composite nodes?
-In priority order for the implementation:
-- Parallel (1 input-n outputs);
-- Sequence (1 input-n outputs);
-- Selector (1 input-n outputs);
-- Conditional (1 input - 2 outputs);
-- Custom one (scripting).
+###How does it look like?
+![image](../assets/prototype1-5.jpg)
 
-###What are our leaf nodes?
-In priority order for the implementation:
-- OSC;
-- MIDI;
-- DMX;
-- Audio;
-- Video;
-- Script;
-- Abstraction (another Behavior tree).
+###What are our possible nodes?
+In priority order for the implementation <sup>1<sup>:
 
-###What are our decoration nodes?
-In priority order for the implementation:
-- For loop;
-- Conditional.
+**Leaves:**
 
-PS: Do we really need decorators?
+- OSC; MIDI; DMX; Audio; Video; Script;
+
+**Complex:**
+
+- Parallel;
+
+- Sequence (regular and random?);
+
+- Selector (regular and random?);
+
+- Decorator (Always fail, Always succeed, include, invert, limit, repeat, until success, - until fail).
+
+###How do I add a leaf node?
+![image](../assets/prototype1-6.jpg)
+
+###How do I add a complex node?
+![image](../assets/prototype1-7.jpg)
+
+###How to create connections between states?
+![image](../assets/prototype1-8.jpg)
 
 --
 
@@ -83,8 +92,9 @@ https://coffeebraingames.wordpress.com/2014/02/23/finite-state-machine-vs-behavi
 	
 http://www.gamasutra.com/blogs/JakobRasmussen/20160427/271188/Are_Behavior_Trees_a_Thing_of_the_Past.php
 
-	"[In FSM,] being able to translate from any state to any other state by specifying conditions, makes it very easy to design FSMs for AI behavior. However, it turns out this is also the drawback of the FSM approach. In professional games, FSMs can easily have hundreds of states, and at such sizes they become increasingly difficult to debug. Damian Isla outlined this in detail regarding the AI of Halo 2 at his GDC talk from 2005" <sup>1</sup>.
+	"[In FSM,] being able to translate from any state to any other state by specifying conditions, makes it very easy to design FSMs for AI behavior. However, it turns out this is also the drawback of the FSM approach. In professional games, FSMs can easily have hundreds of states, and at such sizes they become increasingly difficult to debug. Damian Isla outlined this in detail regarding the AI of Halo 2 at his GDC talk from 2005" <sup>2</sup>.
 	
 	"Behavior Trees in many cases provide a framework for designing more comprehensible and easier-to-read AIs than hierarchical FSMs. Also, the nicely organised tree makes for easier visual debugging in practice. However, the Behavior Tree technique has a number of shortcomings. (...) For very large behavior trees, the costs of evaluating the whole tree can be prohibitive.  The major challenge is that it does not provide a model for improving decision-making. The decision-making is locked to the conditional nodes, without specifying how decisions are made to invoke different subtrees". 
 
-<sup>1</sup> http://www.gamasutra.com/view/feature/130663/gdc_2005_proceeding_handling_.php
+<sup>1</sup> https://github.com/libgdx/gdx-ai/wiki/Behavior-Trees
+<sup>2</sup> http://www.gamasutra.com/view/feature/130663/gdc_2005_proceeding_handling_.php
