@@ -28,11 +28,11 @@
 		* maxmsp-osc: "/sound/ambient $bb[ambient_sound]"
 		* dmx: "/light/0 $bb[light_0_r] $bb[light_0_g] $bb[light_0_b]"
 	* sequence: "main loop"
-			* sequence "introduction" (decorator: repeat for X seconds)
-				* bb[amplitude] = value() % script?
-				* bb[ambient_sound] = bb[amplitude]
-				* bb[pulse_0] = bb[amplitude] * bb[input_1]
-				* bb[pulse_1] = bb[amplitude] * bb[input_0]
+		* sequence "introduction" (decorator: repeat for X seconds)
+			* bb[amplitude] = value() % script?
+			* bb[ambient_sound] = bb[amplitude]
+			* bb[pulse_0] = bb[amplitude] * bb[input_1]
+			* bb[pulse_1] = bb[amplitude] * bb[input_0]
 		* parallel "the self appears" (decorator: repeat for X seconds)
 			* parallel "light control" (stop if one success)
 				* parallel (dectorator: repeat)
