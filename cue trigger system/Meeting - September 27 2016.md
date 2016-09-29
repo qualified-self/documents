@@ -23,10 +23,10 @@
 * wait for trigger
 * parallel:
 	* parallel (decorator: repeat)
-		* vibropixel-osc: "/pulse/0 <bb[pulse_0]>"
-		* vibropixel-osc: "/pulse/1 <bb[pulse_1]>"
-		* maxmsp-osc: "/sound/ambient <bb[ambient_sound]>"
-		* dmx: "/light/0 <bb[light_0_r] <bb[light_0_g] <bb[light_0_b]>
+		* vibropixel-osc: "/pulse/0 $bb[pulse_0]"
+		* vibropixel-osc: "/pulse/1 $bb[pulse_1]"
+		* maxmsp-osc: "/sound/ambient $bb[ambient_sound]"
+		* dmx: "/light/0 $bb[light_0_r] $bb[light_0_g] $bb[light_0_b]"
 	* sequence: "main loop"
 			* sequence "introduction" (decorator: repeat for X seconds)
 				* bb[amplitude] = value() % script?
