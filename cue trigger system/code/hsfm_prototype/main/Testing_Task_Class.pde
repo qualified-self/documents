@@ -1,37 +1,33 @@
 /************************************************
- ** Basic file created to test the State Class
+ ** Basic file created to test the Task Class
  ************************************************
  ** jeraman.info, Sep. 30 2016 ******************
  ************************************************
  ************************************************/
 
-class Testing_State_Class {
+class Testing_Task_Class {
 
-  State s;
-  AudioTask t1;
-  OSCTask t2;
+  AudioTask at;
+  OSCTask ot;
   PApplet p;
-  
-  Testing_State_Class(PApplet p) {
+
+  Testing_Task_Class(PApplet p) {
     this.p = p;
   }
 
   void setup() {
-    s = new State("my first state!");
-
     Object[] m = {1, 2, 3, 4, "test", 3.4};
 
-    t1 = new AudioTask(p, "Testing audio", "vibraphon.aiff");
-    t2 = new OSCTask(p, "Testing OSC", 5000, "127.0.0.1", m); 
-
-    s.add_task(t1);
-    s.add_task(t2);
+    at = new AudioTask(p, "Testing audio", "vibraphon.aiff");
+    ot = new OSCTask(p, "Testing OSC", 5000, "127.0.0.1", m); 
+    at.run();
+    ot.run();
   }
 
-  void draw() {
-    s.update_status();
+  void draw () {
+    at.update_status();
 
-    switch(s.get_status()) {
+    switch(ot.get_status()) {
     case INACTIVE:
       background(0, 0, 0);
       break;
@@ -46,10 +42,10 @@ class Testing_State_Class {
     }
   }
 
-  void mousePressed() {
-    s.run();
-  }
-  void mouseReleased() {
-    s.stop();
+
+  void mouseClicked() {
+    Object[] m = {mouseX, mouseY};
+    ot.update_message(m);
+    ot.run();
   }
 }

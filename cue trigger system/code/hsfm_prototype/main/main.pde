@@ -1,16 +1,18 @@
+/************************************************
+ ** My main!
+ ************************************************
+ ** jeraman.info, Sep. 30 2016 ******************
+ ************************************************
+ ************************************************/
 
+//Testing_State_Class t = new Testing_State_Class(this);
+//Testing_Task_Class t = new Testing_Task_Class(this);
+Testing_Connection_Class t = new Testing_Connection_Class(this);
 
 void setup() {
-  setup_state_class();
+  t.setup();
 }
 
 void draw() {
-  draw_state_class();
-}
-
-void mousePressed() {
-  mousePressed_state_class();
-}
-void mouseReleased() {
-  mouseReleased_state_class();
+  t.draw();
 }
