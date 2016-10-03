@@ -32,6 +32,10 @@ public abstract class Task {
     return this.status;
   }
   
+  void refresh() {
+    this.status = Status.INACTIVE;
+  }
+  
   abstract void run();
   abstract void update_status();
   abstract void stop();

@@ -12,10 +12,16 @@ public static enum Status {
 }
 
 //define here what input conditions this state machine has. these were set based in our scenario.
-public static enum Input {
+public static enum Input2 {
     START_MAIN_LOOP,
     START_INTRODUCTION,
     START_SELF_APPEARS,
     DATA_SYNCED_OR_TIMEOUT,
     FINISH
+}
+
+//define here what input conditions this state machine has. these were set based in our scenario.
+public static enum Input {
+    PUSH,
+    COIN
 }

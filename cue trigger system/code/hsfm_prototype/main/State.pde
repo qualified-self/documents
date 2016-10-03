@@ -24,7 +24,7 @@ public class State {
     this.tasks = new Vector<Task>();
     this.connections = new Vector<Connection>();
 
-    println("state " + this.toString() + " created!");
+    println("state " + this.name + " created!");
   }
 
   //run all tasks associated to this node
@@ -34,7 +34,7 @@ public class State {
 
     this.status = Status.RUNNING;
 
-    println("running all tasks from state " + this.toString());
+    println("running all tasks from state " + this.name);
   }
 
   //stops all tasks associated to this node
@@ -44,7 +44,13 @@ public class State {
 
     this.status = Status.INACTIVE;
 
-    println("stopping all tasks from state " + this.toString());
+    println("stopping all tasks from state " + this.name);
+  }
+  
+  //it's entering a state, you need to refresh it
+  void refresh() {
+    for (Task t : tasks) 
+      t.refresh();
   }
 
   //gets the current status of this state
@@ -77,9 +83,19 @@ public class State {
         this.status = Status.DONE;
     }
 
-    println("State " + this.toString() + "state was updated to " + this.status);
+    //println("State " + this.name + "state was updated to " + this.status);
   }
+  
+  //function called everytime there is a new input
+  State tick(Input current_input) {
+    State my_return = this; //<>//
 
+   if (this.status==Status.DONE) 
+      my_return = this.change_state(current_input);
+    
+    return my_return;
+  }
+  
 
 
   //tries to change the current state. returns the next state if it's time to change
@@ -87,7 +103,7 @@ public class State {
 
     //if it' not done yet, not ready to change
     if (this.status!=Status.DONE) {
-      println("State " + this.toString() + " is not ready to change!");
+      println("State " + this.name + " is not ready to change!");
       return null;
     }
 
@@ -99,23 +115,24 @@ public class State {
       //looks if c's condition corresponds to the current input. if so changes the state
       if (c.is_condition_satisfied(current_input)) {
         next_state = c.get_next_state();
-        println("State " + this.toString() + " is changing to " + next_state.toString());
+        println("State was " + this.name + " . Now it is changing to " + next_state.name); 
+        next_state.refresh();
+        next_state.run();
         break;
       }
     }
-    
+
     if (next_state==null)
-      println("State " + this.toString() + " doesn't have a connection for this input! this is a bug!");
+      println("State " + this.name + " doesn't have a connection for this input! this is a bug!");
 
     return next_state;
   }
 
 
-
   //add a task t to this state
   void add_task(Task t) {
     tasks.addElement(t);
-    println("Task " + t.toString() + " added to state " + this.toString());
+    println("Task " + t.name + " added to state " + this.name);
   }
 
   //remove a task t from this state
@@ -123,21 +140,38 @@ public class State {
     if (tasks.contains(t))
       this.tasks.removeElement(t);
     else
-      println("Unable to remove task " + t.toString() + " from state " + this.toString());
+      println("Unable to remove task " + t.name + " from state " + this.name);
   }
 
   //add a connection to this state
-  void add_connection(State next_state, Input condition) {
+  void connect(Input condition, State next_state) {    
+
+    //verifies if there is already a connection with this particular condition
+    for (Connection c : connections) {
+      //looks if c's condition corresponds to the current input. if so changes the state
+      if (c.is_condition_satisfied(condition)) {
+        println("condition " + condition + " is already used inside this state (" + this.name + ").\n    please, consider removing it or pick another condition before continuing.");
+        return;
+      }
+    }
+
+    //in case the condition hasnt been used, create a new connection
     Connection c = new Connection(next_state, condition);
     connections.addElement(c);
-    println("Conenction " + c.toString() + " added to state " + this.toString());
+    println("Conenction " + c.toString() + " added to state " + this.name);
   }
 
   //remove a connection from this state
-  void remove_connection(Connection c) {
+  void disconnect(Connection c) {
     if (connections.contains(c))
       this.connections.removeElement(c);
     else
-      println("Unable to remove connection " + c.toString() + " from state " + this.toString());
+      println("Unable to remove connection " + c.toString() + " from state " + this.name);
   }
+
+  //@TODO function: Connect anything (all input conditions leads to a state)
+
+  //@TODO function: Connect all remaining input  (all input conditions that were not used so far leads to a state)
+
+  //@TODO behavior?: implement default behavior of staying in the current node?
 }

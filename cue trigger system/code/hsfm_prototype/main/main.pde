@@ -10,9 +10,14 @@
 Testing_Connection_Class t = new Testing_Connection_Class(this);
 
 void setup() {
+  size(200, 200);
   t.setup();
 }
 
 void draw() {
   t.draw();
+}
+
+void mousePressed(){
+  t.mousePressed();
 }
