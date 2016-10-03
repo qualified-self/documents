@@ -5,12 +5,12 @@
  ************************************************
  ************************************************/
 
-class Testing_Task_Class extends Testing_Class {
+class Testing_Task extends Testing {
 
   AudioTask at;
   OSCTask ot;
   
-  public Testing_Task_Class(PApplet p) {
+  public Testing_Task(PApplet p) {
     super(p);
   };
 

@@ -1,9 +1,9 @@
-class Testing_Canvas_Class extends Testing_Class {
+class Testing_Canvas extends Testing {
   Canvas canvas; 
 
   OSCTask demo;
 
-  public Testing_Canvas_Class(PApplet p) {
+  public Testing_Canvas(PApplet p) {
     super(p);
   }
 

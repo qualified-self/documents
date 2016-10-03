@@ -6,11 +6,11 @@
  ************************************************/
 
 
-abstract class Testing_Class {
+abstract class Testing {
   
   PApplet p;
   
-  Testing_Class(PApplet p) {
+  Testing(PApplet p) {
     this.p = p;
   }
   

@@ -9,7 +9,7 @@
  ************************************************/
 
 
-class Testing_Connection_Class extends Testing_Class {
+class Testing_Connection extends Testing {
   State root; 
 
   State locked, unlocked, end;
@@ -20,7 +20,7 @@ class Testing_Connection_Class extends Testing_Class {
   
   Input i;
 
-  public Testing_Connection_Class(PApplet p) {
+  public Testing_Connection(PApplet p) {
     super(p);
   }
 
