@@ -12,16 +12,26 @@ public static enum Status {
 }
 
 //define here what input conditions this state machine has. these were set based in our scenario.
-public static enum Input2 {
+public static enum Input {
+    PUSH,
+    COIN,
     START_MAIN_LOOP,
     START_INTRODUCTION,
     START_SELF_APPEARS,
     DATA_SYNCED_OR_TIMEOUT,
-    FINISH
+    FINISH;
+    
+    public static final int size = Input.values().length;
+    
+    public int length() {
+      return size;
+    }
 }
 
+/*
 //define here what input conditions this state machine has. these were set based in our scenario.
 public static enum Input {
     PUSH,
     COIN
 }
+*/

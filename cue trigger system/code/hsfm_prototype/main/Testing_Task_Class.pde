@@ -5,18 +5,17 @@
  ************************************************
  ************************************************/
 
-class Testing_Task_Class {
+class Testing_Task_Class extends Testing_Class {
 
   AudioTask at;
   OSCTask ot;
-  PApplet p;
-
-  Testing_Task_Class(PApplet p) {
-    this.p = p;
-  }
+  
+  public Testing_Task_Class(PApplet p) {
+    super(p);
+  };
 
   void setup() {
-    Object[] m = {1, 2, 3, 4, "test", 3.4};
+    Object[] m = {1, "test", 3.4};
 
     at = new AudioTask(p, "Testing audio", "vibraphon.aiff");
     ot = new OSCTask(p, "Testing OSC", 5000, "127.0.0.1", m); 
@@ -26,10 +25,11 @@ class Testing_Task_Class {
 
   void draw () {
     at.update_status();
+    ot.update_status();
 
-    switch(ot.get_status()) {
+    switch(at.get_status()) {
     case INACTIVE:
-      background(0, 0, 0);
+     background(0, 0, 0);
       break;
 
     case RUNNING:
@@ -41,9 +41,8 @@ class Testing_Task_Class {
       break;
     }
   }
-
-
-  void mouseClicked() {
+  
+  void mousePressed() {
     Object[] m = {mouseX, mouseY};
     ot.update_message(m);
     ot.run();

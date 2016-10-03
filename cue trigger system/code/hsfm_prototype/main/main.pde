@@ -5,8 +5,8 @@
  ************************************************
  ************************************************/
 
-//Testing_State_Class t = new Testing_State_Class(this);
 //Testing_Task_Class t = new Testing_Task_Class(this);
+//Testing_State_Class t = new Testing_State_Class(this);
 Testing_Connection_Class t = new Testing_Connection_Class(this);
 
 void setup() {
@@ -18,6 +18,10 @@ void draw() {
   t.draw();
 }
 
-void mousePressed(){
+void mousePressed() {
   t.mousePressed();
+}
+
+void mouseReleased() {
+  t.mouseReleased();
 }

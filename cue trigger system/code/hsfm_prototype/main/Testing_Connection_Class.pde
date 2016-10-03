@@ -9,23 +9,25 @@
  ************************************************/
 
 
-class Testing_Connection_Class {
+class Testing_Connection_Class extends Testing_Class {
   State root; 
 
-  State locked, unlocked;
+  State locked, unlocked, end;
   Connection c1, c2, c3, c4;
 
   AudioTask t1;
   OSCTask t2, t3;
-  PApplet p;
+  
+  Input i;
 
-  Testing_Connection_Class(PApplet p) {
-    this.p = p;
+  public Testing_Connection_Class(PApplet p) {
+    super(p);
   }
 
   void setup() {
     locked   = new State("locked!");
     unlocked = new State("unlocked!");
+    end = new State("The end!");
 
     t1 = new AudioTask(p, "Playing sound!", "vibraphon.aiff");
     t2 = new OSCTask(p, "Sending OSC!", 5000, "127.0.0.1", new Object[]{1, 2, 3, 4, "test", 3.4});
@@ -41,25 +43,26 @@ class Testing_Connection_Class {
   }
 
   void adding_tasks() {
-    //locked.add_task(t1);
-    //locked.add_task(t1);
-    //locked.add_task(t1);
     locked.add_task(t2);
     locked.add_task(t2);
 
-    //unlocked.add_task(t1);
-    //unlocked.add_task(t1);
-    //unlocked.add_task(t1);
     unlocked.add_task(t3);
     unlocked.add_task(t3);
+    
+    end.add_task(t1);
   }
 
   void creating_connections () {
+    
     locked.connect(Input.PUSH, locked);
     locked.connect(Input.COIN, unlocked);
-
+    locked.connect_via_all_unused_inputs(end);
+   
     unlocked.connect(Input.PUSH, locked);
     unlocked.connect(Input.COIN, unlocked);
+    unlocked.connect_via_all_unused_inputs(end);
+    
+    end.connect_via_all_inputs(end);
   }
 
   void draw() {
@@ -83,26 +86,35 @@ class Testing_Connection_Class {
       break;
     }
 
+    //drawing text
     textSize(32);
     textAlign(CENTER);
     fill(100, 100, 100);
     text(root.name, width/2, height/2);
+
+    //drawing input
+    if (mousePressed) {
+      textSize(17);
+      textAlign(CENTER);
+      fill(255, 355, 355);
+      text("input was: " + i.toString(), width/2, (height/2)+50);
+    }
   }
 
   void mousePressed() {
-    int chances = int(random(2));
+    int chances = int(random(11));
 
-    if (chances == 0) //if push..
+    if (chances < 5) { //if push.. 
+      i = Input.PUSH;
       println("input: PUSH!");
-    else
+    } else if (chances < 10){
+      i = Input.COIN;
       println("input: COIN!");
+    } else {
+      i = Input.START_MAIN_LOOP;
+      println("input: anything else that raises the isolated state!");
+    }
 
-    if (chances == 0) //if push..
-      root = root.tick(Input.PUSH);
-    else  //if coin...
-    root = root.tick(Input.COIN);
-  }
-
-  void mouseReleased() {
+    root = root.tick(i);
   }
 }

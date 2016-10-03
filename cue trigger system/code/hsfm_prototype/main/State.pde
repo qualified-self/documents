@@ -19,12 +19,10 @@ public class State {
 
   //constructor
   public State(String name) {
-    this.name = name;
-    this.status = Status.INACTIVE;
-    this.tasks = new Vector<Task>();
+    this.name   = name;
+    this.status = Status.INACTIVE; 
+    this.tasks  = new Vector<Task>();
     this.connections = new Vector<Connection>();
-
-    println("state " + this.name + " created!");
   }
 
   //run all tasks associated to this node
@@ -92,11 +90,11 @@ public class State {
 
    if (this.status==Status.DONE) 
       my_return = this.change_state(current_input);
+   else //not ready yet...
+     println("State " + this.name + " is not ready to change!");
     
     return my_return;
   }
-  
-
 
   //tries to change the current state. returns the next state if it's time to change
   State change_state(Input current_input) {
@@ -170,8 +168,35 @@ public class State {
   }
 
   //@TODO function: Connect anything (all input conditions leads to a state)
+  void connect_via_all_inputs (State next_state) {
+    //get all possible inputs and converts to a vector
+    Vector<Input> inputs = new Vector(Arrays.asList( (Input[])Input.values() ));
+    
+    //removing the finish
+    inputs.remove(Input.FINISH);
+    
+    for (Input i : inputs) 
+      this.connect(i, next_state);
+  }
 
   //@TODO function: Connect all remaining input  (all input conditions that were not used so far leads to a state)
+  void connect_via_all_unused_inputs (State next_state) {
+    //get all possible inputs and converts to a vector
+    Vector<Input> inputs = new Vector(Arrays.asList( (Input[])Input.values() ));
+    
+    //removing the finish
+    inputs.remove(Input.FINISH);
+    
+    //removing the conditions already used
+    for (Connection c : connections)
+      inputs.remove(c.condition);
+      
+    //making the remaining connections
+    for (Input i : inputs) 
+      this.connect(i, next_state);
+    
+    println("state " + this.name + " has the following remaining inputs: " + inputs);
+  }
 
   //@TODO behavior?: implement default behavior of staying in the current node?
 }

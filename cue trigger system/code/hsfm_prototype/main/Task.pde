@@ -1,6 +1,11 @@
 /************************************************
  ** Abstract Task class and all possible kids (audio, osc, etc)
  ************************************************
+ ** MISSING: ************************************
+ **  - DMX: http://motscousus.com/stuff/2011-01_dmxP512/
+ **  - MIDI: The MIDI Bus (Tools > Add Tool) ****
+ **  - Blackboard *******************************
+ ************************************************
  ** jeraman.info, Sep. 30 2016 ******************
  ************************************************
  ************************************************/
@@ -33,7 +38,7 @@ public abstract class Task {
   }
   
   void refresh() {
-    this.status = Status.INACTIVE;
+   this.stop();
   }
   
   abstract void run();

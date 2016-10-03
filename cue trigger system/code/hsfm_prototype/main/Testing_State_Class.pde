@@ -5,15 +5,14 @@
  ************************************************
  ************************************************/
 
-class Testing_State_Class {
+class Testing_State_Class extends Testing_Class {
 
   State s;
   AudioTask t1;
   OSCTask t2;
-  PApplet p;
   
-  Testing_State_Class(PApplet p) {
-    this.p = p;
+  public Testing_State_Class(PApplet p) {
+    super(p);
   }
 
   void setup() {
