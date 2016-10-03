@@ -13,25 +13,11 @@ public static enum Status {
 
 //define here what input conditions this state machine has. these were set based in our scenario.
 public static enum Input {
-    PUSH,
-    COIN,
+    PUSH, //used only inside the Testing_Connection_Class. delete this whenever done with the testing.
+    COIN, //used only inside the Testing_Connection_Class. delete this whenever done with the testing.
     START_MAIN_LOOP,
     START_INTRODUCTION,
     START_SELF_APPEARS,
     DATA_SYNCED_OR_TIMEOUT,
     FINISH;
-    
-    public static final int size = Input.values().length;
-    
-    public int length() {
-      return size;
-    }
 }
-
-/*
-//define here what input conditions this state machine has. these were set based in our scenario.
-public static enum Input {
-    PUSH,
-    COIN
-}
-*/

@@ -15,8 +15,10 @@ public class Canvas extends Task {
   public Canvas (String name, State ns, Input c) {
     super (name);
     begin = new State("Begin!");
-    end = new State("end!");
+    end = new State("End!");
     actual = begin;
+
+    println("Canvas " + this.name + " is inited!");
   }
 
   //run all tasks associated to this node
@@ -46,7 +48,7 @@ public class Canvas extends Task {
 
   //updates the status of this state
   void update_status() {
-    
+
     //if this state finished. test this condition, maybe you need to overload the comparison!
     if (actual==end) {
       this.status = Status.DONE;
@@ -61,8 +63,8 @@ public class Canvas extends Task {
 
     //tries to update the next
     State next = null;
-    
-     //if it' a finish command, go to the last state. otherwise, continue the execution
+
+    //if it' a finish command, go to the last state. otherwise, continue the execution
     if (current_input==Input.FINISH)
       next = end;
     else
