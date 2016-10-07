@@ -1,3 +1,0 @@
-[submodule "src/cpp-api"]
-	path = src/cpp-api
-	url = https://github.com/BITalinoWorld/cpp-api.git
