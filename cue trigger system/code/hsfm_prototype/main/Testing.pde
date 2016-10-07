@@ -18,4 +18,5 @@ abstract class Testing {
   abstract void draw();
   void mousePressed(){}
   void mouseReleased(){}
+  void keyPressed() {}
 }

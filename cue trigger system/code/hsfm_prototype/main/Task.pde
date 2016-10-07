@@ -110,7 +110,9 @@ class OSCTask extends Task {
   }
 
   void stop() {
+    Object[] args = message.arguments();
     message.clear();
+    update_message(args);
     this.status = Status.INACTIVE;
   }
 

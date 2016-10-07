@@ -26,3 +26,7 @@ void mousePressed() {
 void mouseReleased() {
   t.mouseReleased();
 }
+
+void keyPressed() {
+  t.keyPressed();
+}
