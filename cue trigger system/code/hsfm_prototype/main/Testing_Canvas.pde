@@ -34,6 +34,7 @@ class Testing_Canvas extends Testing {
   OSCTask init;
   OSCTask final_fadeout;
   OSCTask update_vibropixel1, update_vibropixel2;
+  OSCTask update_bb;
   OSCTask t2, t3, t4, t5, t6, t7, t8; 
 
   //input for debug
@@ -44,10 +45,11 @@ class Testing_Canvas extends Testing {
   }
 
   void init_tasks() {
-    init          = new OSCTask(p, "switch/off", 5000, "127.0.0.1", new Object[]{0});
-    final_fadeout = new OSCTask(p, "fade/out", 5001, "127.0.0.1", new Object[]{1, 1});
+    init               = new OSCTask(p, "switch/off", 5000, "127.0.0.1", new Object[]{0});
+    final_fadeout      = new OSCTask(p, "fade/out", 5001, "127.0.0.1", new Object[]{1, 1});
     update_vibropixel1 = new OSCTask(p, "update/vibropixel/1", 5003, "127.0.0.1", new Object[]{0});
     update_vibropixel2 = new OSCTask(p, "update/vibropixel/2", 5004, "127.0.0.1", new Object[]{0});
+    update_bb          = new OSCTask(p, "update/variables/blackboard", 5005, "127.0.0.1", new Object[]{0});
 
     //t3 = new OSCTask(p, "start/main/loop", 5002, "127.0.0.1", new Object[]{1, 1, 1, 1});
     //t4 = new OSCTask(p, "update/vibropixel/1", 5003, "127.0.0.1", new Object[]{0});
@@ -79,6 +81,7 @@ class Testing_Canvas extends Testing {
     init_tasks();
     setup_root();
     setup_environmental();
+    setup_piece();
     root.run();
     println("the canvas is ready!");
   }
@@ -88,31 +91,27 @@ class Testing_Canvas extends Testing {
     gui();
   }
 
-  void mousePressed() {
-
-    if (mouseButton == LEFT) {
-      if (!keyPressed)
-        i = Input.START_MAIN_LOOP;
-      else
-        i = Input.DATA_SYNCED_OR_TIMEOUT;
-    } else {  
-      if (!keyPressed)
-        i = Input.START_SELF_APPEARS;
-      else
-        i = Input.FINISH;
+  void keyPressed() {
+    switch(key) {
+    case '1':
+      i = Input.START_MAIN_LOOP;
+      break;
+    case '2':
+      i = Input.START_SELF_APPEARS;
+      break;
+    case '3':
+      i = Input.DATA_SYNCED_OR_TIMEOUT;
+      break;
+    case '4':
+      i = Input.FINISH;
+      break;
     }
-
     println("inputing " + i);
     root.tick(i);
   }
-  
-  void keyPressed() {
-    //if (key==' ')
-      //root.tick(Input.EMPTY);
-  }
 
   ////////////////////////////////////////////////
-  //setting up root canvas
+  //setting up root canvas - LEVEL 1
   void setup_root() {
     root_create_states();
     root_associate_tasks_to_state();
@@ -124,7 +123,7 @@ class Testing_Canvas extends Testing {
     wait_for_trigger = new State("WAIT_FOR_TRIGGER");
     main             = new State("MAIN_STATE_FOR_THE_PIECE");
     environmental    = new Canvas("ENVIRONMENTAL");
-    piece            = new Canvas("THE PIECE");
+    piece            = new Canvas("PIECE");
 
     root.add_state(wait_for_trigger);
     root.add_state(main);
@@ -134,7 +133,7 @@ class Testing_Canvas extends Testing {
     root.add_initialization_task(init);
     root.add_finalization_task(final_fadeout);
     main.add_task(environmental);
-    //main.add_task(piece);
+    main.add_task(piece);
   }
 
   void root_create_connections_state () {
@@ -147,7 +146,7 @@ class Testing_Canvas extends Testing {
   }
 
   ////////////////////////////////////////////////
-  //setting up enviromental canvas
+  //setting up enviromental canvas - LEVEL 2 - PART 1
   void setup_environmental() {
     environmental_create_states();
     environmental_associate_tasks_to_state();
@@ -171,5 +170,40 @@ class Testing_Canvas extends Testing {
     osc_loop.connect(Input.FINISH, environmental.end);
     osc_loop.connect_via_all_unused_inputs(osc_loop);
     environmental.all_states_connect_to_finish_when_finished();
+  }
+
+  ////////////////////////////////////////////////
+  //setting up piece canvas - LEVEL 2 - PART 2
+  void setup_piece() {
+    piece_create_states();
+    piece_associate_tasks_to_state();
+    piece_create_connections_state();
+  }
+
+  void piece_create_states() {
+    introduction = new State("INTRODUCTION");
+    self_appears = new State("SELF_APPEARS");
+    sync         = new State("SYNC");
+    //piece was already created!
+    piece.add_state(introduction);
+    piece.add_state(self_appears);
+    piece.add_state(sync);
+  }
+
+  void piece_associate_tasks_to_state () {
+    introduction.add_task(update_bb);
+    self_appears.add_task(update_bb);
+    sync.add_task(update_bb);
+  }
+
+  void piece_create_connections_state () {
+    piece.begin.connect_via_all_inputs(introduction);
+    introduction.connect(Input.START_SELF_APPEARS, self_appears);
+    introduction.connect_via_all_unused_inputs(introduction);
+    self_appears.connect(Input.DATA_SYNCED_OR_TIMEOUT, sync);
+    self_appears.connect_via_all_unused_inputs(self_appears);
+    sync.connect(Input.FINISH, piece.end);
+    sync.connect_via_all_unused_inputs(sync);
+    piece.all_states_connect_to_finish_when_finished();
   }
 }
