@@ -16,7 +16,7 @@
 3. Intro (runs for approximately 1 minute)
   * Amplitude of AMBIENT sound increases
   * VIBROPIXEL amplitude increases at the same time (subtle)
-4. The self appears: runs for 1 minute, then stop when either (1) the subject's SENSOR input is in synch with the BEAT or (2) when we have reached a timeout (3 minutes)
+4. The self appears: runs for 1 minute, then stop when either (1) the subject's SENSOR input is in synch (*) with the BEAT or (2) when we have reached a timeout (3 minutes)
   * Everything stops
   * BEAT sound starts
   * Configurations (intensity, duration, rate) of the STROBE are activated randomly at semi-regular intervals
@@ -27,3 +27,5 @@
 6. Outro (30 seconds)
   * Sounds fade out quickly
 7. The end (everything over)
+
+(*) "In sync" : We will leave it to Max/MSP to send a measurement of synchrony in (0..1): the cue control system will detect synchrony if this value is bigger than 0.5 for at least 10 seconds.
